@@ -24,7 +24,7 @@ export default class UserRepository {
   }
 
   static async findById(resumeId: string): Promise<any> {
-    const userResume = await UserModel.findOne({ _id: resumeId });
+    const userResume = await UserModel.findById(resumeId);
     return userResume;
   }
 
