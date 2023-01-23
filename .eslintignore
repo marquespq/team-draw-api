@@ -1,0 +1,5 @@
+dist/
+node_modules/
+jest.config.js
+jest-unit.config.js
+commitlint.config.js
