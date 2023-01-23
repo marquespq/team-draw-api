@@ -1,5 +1,9 @@
 import { Router } from 'express';
-import { createTeamHandler } from '../../controllers/team.controller';
+import {
+  createTeamHandler,
+  getTeamsHandler,
+  updateTeamHandler,
+} from '../../controllers/team.controller';
 import { teamSessionSchema } from '../../schemas/team.schema';
 import validateResource from '../../middlewares/validateResource';
 import catchAsync from '../../utils/catchAsync.utils';
@@ -13,6 +17,12 @@ routes
     catchAsync(auth),
     validateResource(teamSessionSchema),
     catchAsync(createTeamHandler)
+  )
+  .get(catchAsync(auth), getTeamsHandler)
+  .put(
+    catchAsync(auth),
+    validateResource(teamSessionSchema),
+    catchAsync(updateTeamHandler)
   );
 
 export default routes;

@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { Positions } from '../models/player.model';
+import { Positions, Level } from '../models/player.model';
 
 export const playerSessionSchema = yup.object({
   body: yup.object({
@@ -11,6 +11,14 @@ export const playerSessionSchema = yup.object({
         `Posição deve ser: ${Object.values(Positions).join(' ou ')}`
       )
       .required('Position is required'),
+    level: yup
+      .string()
+      .oneOf(
+        Object.values(Level),
+        `Nível deve ser: ${Object.values(Level).join(' ou ')}`
+      )
+      .required('Level is required'),
+    _id: yup.string(),
   }),
 });
 

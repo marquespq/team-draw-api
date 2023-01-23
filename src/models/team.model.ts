@@ -10,6 +10,7 @@ export interface TeamDocument extends mongoose.Document {
 export interface TeamInput {
   name: string;
   players: any;
+  _id?: string;
 }
 
 const teamSchema = new mongoose.Schema(

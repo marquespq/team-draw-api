@@ -7,9 +7,19 @@ export enum Positions {
   ATACANTE = 'ATACANTE',
 }
 
+export enum Level {
+  INICIANTE = 'INICIANTE',
+  MEDIANO = 'MEDIANO',
+  BOM = 'BOM',
+  MUITO_BOM = 'MUITO_BOM',
+  CRAQUE = 'CRAQUE',
+}
+
 export interface PlayerInput {
   name: string;
   position: string;
+  _id?: string;
+  level: string;
 }
 
 const PlayerSchema = new Schema(
@@ -23,6 +33,7 @@ const PlayerSchema = new Schema(
       enum: Object.values(Positions),
       type: String,
     },
+    level: { required: true, enum: Object.values(Level), type: String },
   },
   {
     timestamps: true,

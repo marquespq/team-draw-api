@@ -1,5 +1,9 @@
 import { Router } from 'express';
-import { createPlayerHandler } from '../../controllers/player.controller';
+import {
+  createPlayerHandler,
+  getPlayersHandler,
+  updatePlayersHandler,
+} from '../../controllers/player.controller';
 import { playerSessionSchema } from '../../schemas/player.schema';
 import validateResource from '../../middlewares/validateResource';
 import catchAsync from '../../utils/catchAsync.utils';
@@ -13,6 +17,11 @@ routes
     catchAsync(auth),
     validateResource(playerSessionSchema),
     catchAsync(createPlayerHandler)
+  )
+  .get(catchAsync(auth), getPlayersHandler)
+  .put(
+    catchAsync(auth),
+    validateResource(playerSessionSchema),
+    catchAsync(updatePlayersHandler)
   );
-
 export default routes;

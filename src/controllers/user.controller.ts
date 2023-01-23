@@ -18,7 +18,7 @@ export async function createUserHandler(
 }
 
 export async function getUsersHandler(req: Request, res: Response) {
-  const products = await findAll({});
+  const users = await findAll({});
 
-  res.status(StatusCodes.OK).json(products);
+  res.status(StatusCodes.OK).json(users);
 }

@@ -1,8 +1,19 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { create } from '../services/team.service';
+import { create, findAll, update } from '../services/team.service';
 
 export async function createTeamHandler(req: Request, res: Response) {
   const team = await create(req.body);
+  return res.status(StatusCodes.OK).json(team);
+}
+
+export async function getTeamsHandler(req: Request, res: Response) {
+  const teams = await findAll({});
+
+  res.status(StatusCodes.OK).json(teams);
+}
+
+export async function updateTeamHandler(req: Request, res: Response) {
+  const team = await update(req.body);
   return res.status(StatusCodes.OK).json(team);
 }
