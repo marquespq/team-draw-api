@@ -1,50 +1,16 @@
-import { get } from 'lodash';
-import { FilterQuery, UpdateQuery } from 'mongoose';
+import jwt from 'jsonwebtoken';
 import config from '../config/config';
-import SessionModel, { SessionDocument } from '../models/session.model';
-import { verifyJwt, signJwt } from '../utils/jwt.utils';
-import { findUser } from './user.service';
+import SessionRepository from '../repositories/SessionRepository';
 
 export async function createSession(userId: string, userAgent: string) {
-  const session = await SessionModel.create({ user: userId, userAgent });
+  const session = await SessionRepository.login(userId, userAgent);
 
-  return session.toJSON();
-}
+  if (!session) {
+    throw new Error('Login error');
+  }
 
-export async function findSessions(query: FilterQuery<SessionDocument>) {
-  return SessionModel.find(query).lean();
-}
+  // eslint-disable-next-line no-underscore-dangle
+  const token = jwt.sign({ sub: session._id }, config.jwtKey as string);
 
-export async function updateSession(
-  query: FilterQuery<SessionDocument>,
-  update: UpdateQuery<SessionDocument>
-) {
-  return SessionModel.updateOne(query, update);
-}
-
-export async function reIssueAccessToken({
-  refreshToken,
-}: {
-  refreshToken: string;
-}) {
-  const { decoded } = verifyJwt(refreshToken);
-
-  if (!decoded || !get(decoded, 'session')) return false;
-
-  const session = await SessionModel.findById(get(decoded, 'session'));
-
-  if (!session || !session.valid) return false;
-
-  const user = await findUser({ _id: session.user });
-
-  if (!user) return false;
-
-  const { _id: sessionId } = session;
-
-  const accessToken = signJwt(
-    { ...user, session: sessionId },
-    { expiresIn: config.accessTokenTtl } // 15 minutes
-  );
-
-  return accessToken;
+  return { token };
 }

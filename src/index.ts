@@ -8,7 +8,6 @@ import config, { environments } from './config/config';
 import logger from './config/logger';
 import database from './config/database';
 import routes from './routes';
-import deserializeUser from './middlewares/deserializeUser';
 
 const app = express();
 
@@ -17,7 +16,6 @@ app.use(helmet());
 app.use(compression());
 app.use(cors());
 app.options('*', cors());
-app.use(deserializeUser);
 
 if (config.env !== environments.PRODUCTION) {
   app.use(morgan('tiny'));

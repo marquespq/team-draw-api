@@ -28,6 +28,7 @@ const envVarsSchema = yup
     SALT_WORK_FACTOR: yup.number().default(10),
     ACCESS_TOKEN_TTL: yup.string().default('15m'),
     REFRESH_TOKEN_TTL: yup.string().default('1y'),
+    JWT_KEY: yup.string().required('JWT_KEY is required'),
     JWT_SECRET: yup.string().required('Secret is required'),
   })
   .noUnknown();
@@ -55,6 +56,7 @@ const config = {
       authSource: 'admin',
     },
   },
+  jwtKey: envVars.JWT_KEY,
   saltWorkFactor: envVars.SALT_WORK_FACTOR,
   accessTokenTtl: envVars.ACCESS_TOKEN_TTL,
   refreshTokenTtl: envVars.REFRESH_TOKEN_TTL,

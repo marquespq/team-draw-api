@@ -1,56 +1,40 @@
-
 # Team Draw NodeJs API with Typescript
 
-Team Draw NodeJs API is a project that provides a NodeJs API with Typescript.
+[![GitHub version](https://badge.fury.io/gh/marquespq%2Fteam-draw-api.svg)](https://badge.fury.io/gh/marquespq%2Fteam-draw-api)
 
-## Getting Started
+Team Draw is a NodeJs API built with Typescript. It is designed to be used in web applications and services, and provides an easy way to interact with the database and other services.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
+## Requirements
 
-### Prerequisites
+- npm >=6.0.0
+- node >=14.0.0
 
-What things you need to install the software and how to install them: 
-- npm >=6.0.0 
-- node >=14.0.0 
+## Installation
 
+Clone the repository:
 
-### Installing 
-Clone the repository:     
-Install all dependencies:
+    git clone https://github.com/marquespq/team-draw-api
 
-    npm install 
+Install dependencies:
 
-    
-### Running the tests 
+    npm install
 
-    npm run test:unit  
+Build the project:
 
-    
-### Building the project 
+    npm run build
 
-    npm run build  
+Start the server:
 
-    
-### Linting the project  
+    npm run dev
 
-    npm run lint  
+Run tests:
 
-     Prettier check:  
+    npm run test
 
-    npm run prettier  
+Run linting:
 
-     Prettier fix:  
+    npm run lint
 
-    npm run prettier:fix  
+Run prettier:
 
-     Husky install:  
-
-    npm run prepare  
-
-     Clean dist folder:  
-
-    npm run clean  
-
-     Run dev server (with inspect):  
-
-    npm run dev      														                       
+    npm run prettier

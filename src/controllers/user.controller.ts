@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { CreateUserInput } from '../schemas/user.schema';
-import { createUser } from '../services/user.service';
+import { createUser, findAll } from '../services/user.service';
 import logger from '../config/logger';
 
 export async function createUserHandler(
@@ -15,4 +15,10 @@ export async function createUserHandler(
     logger.error(e);
     res.status(StatusCodes.CONFLICT).send(e.message);
   }
+}
+
+export async function getUsersHandler(req: Request, res: Response) {
+  const products = await findAll({});
+
+  res.status(StatusCodes.OK).json(products);
 }

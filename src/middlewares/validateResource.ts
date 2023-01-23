@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { AnyObjectSchema } from 'yup';
+import { AnyObjectSchema, ValidationError } from 'yup';
+import ApiReturnError from '../utils/apiError.utils';
 import pick from '../utils/pick.utils';
 
 const validate =
@@ -11,8 +12,16 @@ const validate =
       const object = pick(req, Object.keys(validSchema));
       await schema.validate(object, { abortEarly: false });
       next();
-    } catch (e: any) {
-      res.status(StatusCodes.BAD_REQUEST).send(e.errors);
+    } catch (e: unknown) {
+      if (e instanceof ValidationError) {
+        res
+          .status(StatusCodes.BAD_REQUEST)
+          .json(new ApiReturnError({ payload: e.errors }));
+      } else {
+        res
+          .status(StatusCodes.BAD_REQUEST)
+          .json(new ApiReturnError({ payload: 'Erro na entrada de dados.' }));
+      }
     }
   };
 
