@@ -4,6 +4,7 @@ import {
   getTeamsHandler,
   sortTeamHandler,
   updateTeamHandler,
+  getTeamByIdHandler,
 } from '../../controllers/team.controller';
 import { teamSessionSchema } from '../../schemas/team.schema';
 import validateResource from '../../middlewares/validateResource';
@@ -26,5 +27,6 @@ routes
     catchAsync(updateTeamHandler)
   );
 routes.route('/:id').get(catchAsync(auth), sortTeamHandler);
+routes.route('/unique/:id').get(catchAsync(auth), getTeamByIdHandler);
 
 export default routes;

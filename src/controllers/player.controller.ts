@@ -1,6 +1,11 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { create, findAll, update } from '../services/player.service';
+import {
+  create,
+  findAll,
+  findPlayerById,
+  update,
+} from '../services/player.service';
 
 export async function createPlayerHandler(req: Request, res: Response) {
   const player = await create(req.body);
@@ -15,4 +20,9 @@ export async function getPlayersHandler(req: Request, res: Response) {
 export async function updatePlayersHandler(req: Request, res: Response) {
   const team = await update(req.body);
   return res.status(StatusCodes.OK).json(team);
+}
+
+export async function getPlayerById(req: Request, res: Response) {
+  const player = await findPlayerById(req.params.id);
+  res.status(StatusCodes.OK).json(player);
 }

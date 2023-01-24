@@ -3,6 +3,7 @@ import {
   createPlayerHandler,
   getPlayersHandler,
   updatePlayersHandler,
+  getPlayerById,
 } from '../../controllers/player.controller';
 import { playerSessionSchema } from '../../schemas/player.schema';
 import validateResource from '../../middlewares/validateResource';
@@ -24,4 +25,5 @@ routes
     validateResource(playerSessionSchema),
     catchAsync(updatePlayersHandler)
   );
+routes.route('/:id').get(catchAsync(auth), catchAsync(getPlayerById));
 export default routes;
