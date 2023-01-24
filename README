@@ -1,40 +1,22 @@
 # Team Draw NodeJs API with Typescript
 
-[![GitHub version](https://badge.fury.io/gh/marquespq%2Fteam-draw-api.svg)](https://badge.fury.io/gh/marquespq%2Fteam-draw-api)
+This is the repository for the Team Draw NodeJs API with Typescript. This project is built using Node version 14.0.0 and npm version 6.0.0 or higher.
 
-Team Draw is a NodeJs API built with Typescript. It is designed to be used in web applications and services, and provides an easy way to interact with the database and other services.
+## Scripts
 
-## Requirements
+- `clean`: Removes the `dist` folder
+- `build`: Runs `clean` and then compiles the TypeScript code into JavaScript code in the `dist` folder
+- `dev`: Runs TypeScript in watch mode, so any changes made to the TypeScript code will be automatically compiled into JavaScript code
+- `test`: Runs all tests in the project with Jest
+- `test:unit`: Runs only unit tests with Jest
+- `test:review`: Runs all tests in review mode with Jest
+- `test:unit:review`: Runs only unit tests in review mode with Jest
+- `lint`: Lints all TypeScript code in the project
+- `lint:fix`: Automatically fixes any linting errors found in the TypeScript code
+- `prettier`: Checks for formatting errors in all TypeScript files
+- `prettier:fix` : Automatically fixes any formatting errors found in all TypeScript files
+- `prepare` : Installs Husky to enable pre-commit hooks for linting and formatting checks
 
-- npm >=6.0.0
-- node >=14.0.0
+## Dependencies & DevDependencies
 
-## Installation
-
-Clone the repository:
-
-    git clone https://github.com/marquespq/team-draw-api
-
-Install dependencies:
-
-    npm install
-
-Build the project:
-
-    npm run build
-
-Start the server:
-
-    npm run dev
-
-Run tests:
-
-    npm run test
-
-Run linting:
-
-    npm run lint
-
-Run prettier:
-
-    npm run prettier
+This project uses a variety of dependencies and devDependencies, including axios, bcrypt, compression, cors, dotenv, express, firebase-admin, flat, helmet, http-status-codes, jsonwebtoken lodash mixpanel mongoose morgan nanoid pagarme pg reflect-metadata winston yup @commitlint/cli @commitlint/config-conventional @types/bcrypt @types/compression @types/cors @types/express @types/jest @types/jsonwebtoken @types/morgan @types/node @types/supertest @typescript-eslint/eslint-plugin@typescript-eslint/parser eslint eslint-config-airbnb-base eslint-config-airbnb-typescript eslint-config
