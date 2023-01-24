@@ -9,7 +9,6 @@ export async function createPlayerHandler(req: Request, res: Response) {
 
 export async function getPlayersHandler(req: Request, res: Response) {
   const players = await findAll({});
-
   res.status(StatusCodes.OK).json(players);
 }
 

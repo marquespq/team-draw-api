@@ -9,7 +9,6 @@ export async function createTeamHandler(req: Request, res: Response) {
 
 export async function getTeamsHandler(req: Request, res: Response) {
   const teams = await findAll({});
-
   res.status(StatusCodes.OK).json(teams);
 }
 
