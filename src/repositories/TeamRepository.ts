@@ -20,7 +20,10 @@ export default class TeamRepository {
   }
 
   static async findById(id: string): Promise<any> {
-    const team = await TeamModel.findById(id);
+    const team = await TeamModel.findById(id).populate({
+      path: 'players',
+      select: ['name', 'position', 'level'],
+    });
     return team;
   }
 

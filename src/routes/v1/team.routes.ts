@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   createTeamHandler,
   getTeamsHandler,
+  sortTeamHandler,
   updateTeamHandler,
 } from '../../controllers/team.controller';
 import { teamSessionSchema } from '../../schemas/team.schema';
@@ -24,5 +25,6 @@ routes
     validateResource(teamSessionSchema),
     catchAsync(updateTeamHandler)
   );
+routes.route('/:id').get(catchAsync(auth), sortTeamHandler);
 
 export default routes;

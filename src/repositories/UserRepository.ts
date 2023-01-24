@@ -4,7 +4,7 @@ import UserModel, { UserInput } from '../models/user.model';
 export default class UserRepository {
   static async index(query: any): Promise<any> {
     const users = await UserModel.find({ query: query || '' });
-    return users;
+    return users.flatMap((user) => omit(user.toJSON(), 'password'));
   }
 
   static async createUser(input: UserInput) {

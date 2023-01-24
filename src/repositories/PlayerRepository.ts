@@ -3,7 +3,7 @@ import PlayerModel, { PlayerInput } from '../models/player.model';
 export default class PlayerRepository {
   static async index(query: any): Promise<any> {
     const players = await PlayerModel.find({ query: query || '' });
-    return players;
+    return { players, total: players.length };
   }
 
   static async createPlayer(input: PlayerInput) {
